@@ -2,6 +2,8 @@
 const cartSummary = document.querySelector(".cart-summary")
 const item = document.querySelector(".items")
 const cartIcon = document.getElementById("cart-amount");
+const checkoutContainer = document.getElementById("checkout-container");
+const closeCheckout = document.getElementById("close-checkout");
 
 
 let basket = JSON.parse(localStorage.getItem("data")) || [];
@@ -114,7 +116,7 @@ let totalAmount = ()=>{
         cartSummary.innerHTML = `
             <h2>Total Bill: $${amount} </h2> 
             <div>
-                <button class="checkout btn">Checkout</button>
+                <button onclick="openCheckOut()" class="checkout btn">Checkout</button>
                 <button onclick="clearCart()" class="remove-all btn">Clear Cart</button>
             </div>   
         `
@@ -128,5 +130,12 @@ let clearCart = ()=>{
     totalCart()
     localStorage.setItem("data", JSON.stringify(basket));
 }
+let openCheckOut = ()=>{
+    checkoutContainer.classList.add("active")
+}
+closeCheckout.addEventListener("click", function(){
+    checkoutContainer.classList.remove("active")
+})
+
 totalAmount()
 totalCart()
