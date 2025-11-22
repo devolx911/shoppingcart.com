@@ -38,7 +38,7 @@ const generateCart = ()=>{
         item.innerHTML = ``
         cartSummary.innerHTML =`
                 <h2>Cart is Empty</h2>
-                <a href="shopping-cart.html">Back to Home</a>
+                <a href="index.html">Back to Home</a>
             `
     }
 
@@ -132,6 +132,10 @@ let clearCart = ()=>{
 }
 let openCheckOut = ()=>{
     checkoutContainer.classList.add("active")
+    basket = []
+    generateCart()
+    totalCart()
+    localStorage.setItem("data", JSON.stringify(basket)); 
 }
 closeCheckout.addEventListener("click", function(){
     checkoutContainer.classList.remove("active")
